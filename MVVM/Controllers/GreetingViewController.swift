@@ -42,7 +42,8 @@ class GreetingViewController : UIViewController {
         NSLayoutConstraint.activate([
              showGreetingButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
              showGreetingButton.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
-             showGreetingButton.widthAnchor.constraint(equalTo: self.view.widthAnchor, constant: 50)
+             showGreetingButton.widthAnchor.constraint(equalToConstant: 130),
+             showGreetingButton.heightAnchor.constraint(equalToConstant: 50)
         ])
         greetingLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(greetingLabel)
