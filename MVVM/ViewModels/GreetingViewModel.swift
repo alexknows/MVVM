@@ -14,15 +14,15 @@ class GreetingViewModel : GreetingViewModelProtocol {
     // =================
     // MARK: - Variables
     // =================
-    let person: Person
+    private let person: Person
     
-    var greeting: String? {
+    internal var greeting: String? {
         didSet {
             self.greetingDidChange?(self)
         }
     }
     
-    var greetingDidChange: ((GreetingViewModelProtocol) -> ())?
+    internal var greetingDidChange: ((GreetingViewModelProtocol) -> ())?
 
     // ==========
     // MARK: init
@@ -36,8 +36,7 @@ class GreetingViewModel : GreetingViewModelProtocol {
 // MARK: Actions
 // =============
 extension GreetingViewModel {
-    func showGreeting() {
-        print("Show Greeting")
+    internal func showGreeting() {
         self.greeting = "Hello" + " " + self.person.firstName + " " + self.person.lastName
     }
 }

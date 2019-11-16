@@ -19,7 +19,7 @@ class GreetingViewController : UIViewController {
     // =================
     // MARK: - Variables
     // =================
-    var viewModel: GreetingViewModelProtocol! {
+    private var viewModel: GreetingViewModelProtocol! {
         didSet {
             self.viewModel.greetingDidChange = { [unowned self] viewModel in
                 self.greetingLabel.text = viewModel.greeting
@@ -27,9 +27,11 @@ class GreetingViewController : UIViewController {
         }
     }
     
-    let showGreetingButton = UIButton()
-    let greetingLabel = UILabel()
+    private let showGreetingButton = UIButton()
+    private let greetingLabel = UILabel()
     
+    private let buttonWidth: CGFloat = 130
+    private let buttonHeight: CGFloat = 50
 }
 
 // ================
@@ -49,7 +51,7 @@ extension GreetingViewController {
 // MARK: Actions
 // =============
 extension GreetingViewController {
-    @objc func wrapperFunc() {
+    @objc private func wrapperFunc() {
         viewModel.showGreeting()
     }
 }
@@ -58,7 +60,7 @@ extension GreetingViewController {
 // MARK: - Setup
 // =============
 extension GreetingViewController {
-    func setUpView() {
+    private func setUpView() {
         showGreetingButton.setTitle("Press me", for: .normal)
         showGreetingButton.backgroundColor = .red
         showGreetingButton.translatesAutoresizingMaskIntoConstraints = false
@@ -66,8 +68,8 @@ extension GreetingViewController {
         NSLayoutConstraint.activate([
              showGreetingButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
              showGreetingButton.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
-             showGreetingButton.widthAnchor.constraint(equalToConstant: 130),
-             showGreetingButton.heightAnchor.constraint(equalToConstant: 50)
+             showGreetingButton.widthAnchor.constraint(equalToConstant: buttonWidth),
+             showGreetingButton.heightAnchor.constraint(equalToConstant: buttonHeight)
         ])
         greetingLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(greetingLabel)
@@ -82,7 +84,7 @@ extension GreetingViewController {
 // MARK: Data Setup
 // ================
 extension GreetingViewController {
-    func createModel() {
+    private func createModel() {
         // Assembling of MVVM
         let model = Person(firstName: "Alex", lastName: "Knows")
         self.viewModel = GreetingViewModel(person: model)
