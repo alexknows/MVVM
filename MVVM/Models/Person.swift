@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct Person { // Model
+struct Person {
     let firstName: String
     let lastName: String
 }

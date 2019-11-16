@@ -11,6 +11,14 @@ import UIKit
 
 class GreetingViewController : UIViewController {
     
+    // =============
+    // MARK: - Enums
+    // =============
+    
+    
+    // =================
+    // MARK: - Variables
+    // =================
     var viewModel: GreetingViewModelProtocol! {
         didSet {
             self.viewModel.greetingDidChange = { [unowned self] viewModel in
@@ -22,6 +30,12 @@ class GreetingViewController : UIViewController {
     let showGreetingButton = UIButton()
     let greetingLabel = UILabel()
     
+}
+
+// ================
+// MARK: Life Cycle
+// ================
+extension GreetingViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .yellow
@@ -29,11 +43,21 @@ class GreetingViewController : UIViewController {
         createModel()
         setUpView()
     }
-    
+}
+
+// =============
+// MARK: Actions
+// =============
+extension GreetingViewController {
     @objc func wrapperFunc() {
         viewModel.showGreeting()
     }
-    
+}
+
+// =============
+// MARK: - Setup
+// =============
+extension GreetingViewController {
     func setUpView() {
         showGreetingButton.setTitle("Press me", for: .normal)
         showGreetingButton.backgroundColor = .red
@@ -54,10 +78,13 @@ class GreetingViewController : UIViewController {
     }
 }
 
+// ================
+// MARK: Data Setup
+// ================
 extension GreetingViewController {
     func createModel() {
         // Assembling of MVVM
-        let model = Person(firstName: "David", lastName: "Blaine")
+        let model = Person(firstName: "Alex", lastName: "Knows")
         self.viewModel = GreetingViewModel(person: model)
     }
 }
